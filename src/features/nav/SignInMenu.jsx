@@ -7,6 +7,7 @@ import { signOutUser } from "../auth/authActions";
 const SignInMenu = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.auth);
+  console.log(currentUser);
   const history = useHistory();
   return (
     <Menu.Item position="right">
