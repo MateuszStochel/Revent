@@ -1,5 +1,5 @@
 import {
-  asyncActionerror,
+  asyncActionError,
   asyncActionFinish,
   asyncActionStart,
 } from "../../app/api/async/asyncReducer";
@@ -17,7 +17,7 @@ export function increment(amount) {
       dispatch({ type: INCREMENT_COUNTER, payload: amount });
       dispatch(asyncActionFinish());
     } catch (error) {
-      dispatch(asyncActionerror(error));
+      dispatch(asyncActionError(error));
     }
   };
 }
@@ -30,7 +30,7 @@ export function decrement(amount) {
       dispatch({ type: DECREMENT_COUNTER, payload: amount });
       dispatch(asyncActionFinish());
     } catch (error) {
-      dispatch(asyncActionerror(error));
+      dispatch(asyncActionError(error));
       toast.error(error);
     }
   };

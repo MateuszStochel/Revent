@@ -14,7 +14,7 @@ export function asyncActionFinish() {
   };
 }
 
-export function asyncActionerror(error) {
+export function asyncActionError(error) {
   return {
     type: ASYNC_ACTION_ERROR,
   };

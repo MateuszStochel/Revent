@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Button, Container, Menu } from "semantic-ui-react";
 import SignInMenu from "./SignInMenu";
 import SignOutMenu from "./SignOutMenu";
 
-const NavBar = ({ setFormOpen }) => {
-  const history = useHistory();
+const NavBar = () => {
   const { authenticated } = useSelector((state) => state.auth);
 
   return (
