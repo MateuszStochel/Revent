@@ -24,11 +24,9 @@ export default function EventDetailedPage({ match }) {
     data: (event) => dispatch(listenToEvents([event])),
     deps: [match.params.id, dispatch],
   });
-
+  if (error) return <Redirect to="/error" />;
   if (loading || (!event && !error))
     return <LoadingComponent content="Loading event..." />;
-
-  if (error) return <Redirect to="/error" />;
 
   return (
     <Grid>
