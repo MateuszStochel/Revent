@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 import {
   Button,
   Divider,
@@ -9,9 +10,37 @@ import {
   Segment,
   Statistic,
 } from "semantic-ui-react";
+import {
+  followUser,
+  unfollowUser,
+} from "../../../app/firestore/firestoreService";
 
 export default function ProfileHeader({ profile, isCurrentUser }) {
-  console.log(profile);
+  const [loading, setLoading] = useState(false);
+
+  async function handleFollowUser() {
+    setLoading(true);
+    try {
+      await followUser(profile);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+  async function handleUnfollowUser() {
+    setLoading(true);
+    try {
+      await unfollowUser(profile);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <Segment>
       <Grid>
@@ -46,9 +75,24 @@ export default function ProfileHeader({ profile, isCurrentUser }) {
                   <Button fluid color="teal" content="Following" />
                 </Reveal.Content>
                 <Reveal.Content hidden style={{ width: "100%" }}>
-                  <Button basic fluid color="red" content="Unfollow" />
+                  <Button
+                    onClick={handleFollowUser}
+                    loading={loading}
+                    basic
+                    fluid
+                    color="green"
+                    content="Follow"
+                  />
                 </Reveal.Content>
               </Reveal>
+              <Button
+                onClick={handleUnfollowUser}
+                loading={loading}
+                basic
+                fluid
+                color="red"
+                content="Unfollow"
+              />
             </>
           )}
         </Grid.Column>
