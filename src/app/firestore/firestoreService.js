@@ -279,3 +279,13 @@ export function getFollowingCollection(profileId) {
   console.log(profileId);
   return db.collection("following").doc(profileId).collection("userFollowing");
 }
+
+export function getFollowingDoc(profileId) {
+  const userUid = firebase.auth().currentUser.uid;
+  return db
+    .collection("following")
+    .doc(userUid)
+    .collection("userFollowing")
+    .doc(profileId)
+    .get();
+}

@@ -11,7 +11,7 @@ import ProfileCard from "./ProfileCard";
 
 export default function FollowingTab({ profile, activeTab }) {
   const dispatch = useDispatch();
-  const { followings, followers } = useSelector((state) => state.profile);
+  const { following, followers } = useSelector((state) => state.profile);
 
   useFirestoreCollection({
     query:
@@ -41,7 +41,7 @@ export default function FollowingTab({ profile, activeTab }) {
                 <ProfileCard profile={profile} key={profile.id} />
               ))}
             {activeTab === 4 &&
-              followings.map((profile) => (
+              following.map((profile) => (
                 <ProfileCard profile={profile} key={profile.id} />
               ))}
           </Card.Group>
